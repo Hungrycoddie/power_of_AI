@@ -1,0 +1,21 @@
+DoSing a sacda system
+
+A sacda system is a type of irrigation system that uses water from a nearby water source 
+to provide irrigation to crops. The system typically includes a pump, a filter, 
+and a network of pipes and valves that deliver water to the crops.
+
+A SCADA system is a computer system that monitors and controls a network of devices,
+ typically in an industrial or commercial environment. A SCADA system typically consists of a central computer or server, a communication network,
+ and a number of remote devices, such as sensors, controllers, and actuators.
+
+
+A SCADA system is a computer system that monitors and controls a process or facility.
+ A SCADA system is operable if it is able to perform its monitoring and control functions.
+
+
+
+Doxing in scada system write to plc's 
+
+
+
+It is possible to use doxing techniques to write data to PLCs. This can be done by identifying the PLCs that are connected to the internet and then using port scanning techniques to find open ports on the PLCs. Once an open port is found, it is possible

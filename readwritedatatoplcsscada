@@ -1,0 +1,73 @@
+"""
+function to read and write data into PLCs scada
+"""
+
+
+def read_data(plc_ip, plc_port, plc_db, plc_address, plc_type):
+    """
+    function to read data from PLC
+    :param plc_ip: ip address of PLC
+    :param plc_port: port of PLC
+    :param plc_db: database of PLC
+    :param plc_address: address of PLC
+    :param plc_type: type of PLC
+    :return: data from PLC
+    """
+    try:
+        plc = snap7.client.Client()
+        plc.connect(plc_ip, plc_port, plc_db)
+        if plc_type == 'bool':
+            data = plc.read_area(0x84, plc_db, plc_address, 1)
+            data = snap7.util.get_bool(data, 0, 0)
+        elif plc_type == 'int':
+            data = plc.read_area(0x84, plc_db, plc_address, 2)
+            data = snap7.util.get_int(data, 0)
+        elif plc_type == 'real':
+            data = plc.read_area(0x84, plc_db, plc_address, 4)
+            data = snap7.util.get_real(data, 0)
+        elif plc_type == 'dword':
+            data = plc.read_area(0x84, plc_db, plc_address, 4)
+            data = snap7.util.get_dword(data, 0)
+        elif plc_type == 'string':
+            data = plc.read_area(0x84, plc_db, plc_address, 10)
+            data = snap7.util.get_string(data, 0, 10)
+        else:
+            data = 'error'
+        plc.disconnect()
+        return data
+    except Exception as e:
+        print(e)
+        return 'error'
+
+
+def write_data(plc_ip, plc_port, plc_db, plc_address, plc_type, plc_data):
+    """
+    function to write data to PLC
+    :param plc_ip: ip address of PLC
+    :param plc_port: port of PLC
+    :param plc_db: database of PLC
+    :param plc_address: address of PLC
+    :param plc_type: type of PLC
+    :param plc_data: data to write to PLC
+    :return: status of write
+    """
+    try:
+        plc = snap7.client.Client()
+        plc.connect(plc_ip, plc_port, plc_db)
+        if plc_type == 'bool':
+            plc.write_area(0x84, plc_db, plc_address, plc_data)
+        elif plc_type == 'int':
+            plc.write_area(0x84, plc_db, plc_address, plc_data)
+        elif plc_type == 'real':
+            plc.write_area(0x84, plc_db, plc_address, plc_data)
+        elif plc_type == 'dword':
+            plc.write_area(0x84, plc_db, plc_address, plc_data)
+        elif plc_type == 'string':
+            plc.write_area(0x84, plc_db, plc_address, plc_data)
+        else:
+            return 'error'
+        plc.disconnect()
+        return 'success'
+    except Exception as e:
+        print(e)
+        return 'error'
